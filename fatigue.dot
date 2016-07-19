@@ -1,0 +1,545 @@
+digraph {
+  post [
+    shape="egg",
+    style=rounded,
+    label="An Offensive Post, Tumblr, or Reply"
+  ]
+
+  ad [
+    shape="egg",
+    style=rounded,
+    label="An Offensive or broken Ad"
+  ]
+
+  post -> block;
+  post -> report;
+  ad -> report_ad;
+
+  #
+  #
+  # Boilerplate Fatigue\
+  #
+  #
+
+  block [
+    shape="rectangle",
+    label="Block User"
+  ]
+  report [
+    shape="rectangle",
+    label="Report User/Post/Reply"
+  ]
+  report_ad [
+    shape="rectangle",
+    label="Report Shitty Ad"
+  ]
+
+  report -> whaddap[label="yes"]
+
+  whaddap [
+    shape="diamond",
+    label="Report This: What's Going On?"
+  ]
+
+  whaddap -> filter_this;
+  whaddap -> this_is_spam;
+  whaddap -> violates_community_guidelines;
+
+  filter_this [
+    shape="rectangle",
+    label="Filter the Post/User/Reply
+    (Does this item apply to users? Can users be filtered?)"
+  ]
+  this_is_spam [
+    shape="rectangle",
+    label="Mark post/reply as spam
+    (Does this item apply to users?
+    Maybe copy can reflect 'Mark users as spammers')"
+  ]
+  violates_community_guidelines [
+    shape="rectangle",
+    label="This item/person violates Tumblr's Community Guidelines"
+  ]
+
+  violates_community_guidelines -> what_kind;
+
+  #
+  #
+  # TCG Violations
+  #
+  #
+
+  what_kind -> risk_of_harm[label="Risk of Harm"];
+  what_kind -> misuse_identity_work[label="Misuse of your identity or work"];
+  what_kind -> gross_harmful_content[label="This content is gross or hateful"];
+  what_kind -> other_reason[label="Some other reason"];
+
+  what_kind [
+    shape="diamond",
+    label="What kind of Violation is it?
+    - Someone is at risk of harm
+    - Misuse of your identity or work
+    - This content is gross or hateful
+    - Some other reason"
+  ]
+
+  #
+  #
+  # Risk of Harm
+  #
+  #
+
+  risk_of_harm [
+    shape="rectangle",
+    label="Someone is at risk of harm"
+  ]
+
+  risk_of_harm -> harrassment[label="Harassment"];
+  risk_of_harm -> privacy_violation[label="Privacy violation"];
+  risk_of_harm -> harm_to_minors[label="Harm to minors"];
+  risk_of_harm -> self_harm[label="Promotion or glorification of self harm"];
+
+  # Harassment Path
+
+  harrassment [
+    shape="rectangle",
+    label="Are you the person being harassed?"
+  ]
+
+  harrassment -> im_harrassed[label="yes"];
+  harrassment -> someone_is_harrassed[label="no"];
+
+  im_harrassed [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Harassment
+
+    Content you're reporting: ____
+    A little about yourself: ____"
+  ]
+
+  someone_is_harrassed [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Harassment
+
+    Content you're reporting: ____
+    A little about yourself: ____"
+  ]
+
+  # Priovacy Violation Path
+
+  privacy_violation [
+    shape="rectangle",
+    label="Is it your privacy that's being violated?"
+  ]
+
+  privacy_violation -> myprivacy_beingviolated[label="yes"];
+  privacy_violation -> someonesprivacy_beingviolated[label="no"];
+
+  myprivacy_beingviolated [
+    shape="rectangle",
+    label="What, specifically, was posted?"
+  ]
+
+  myprivacy_beingviolated -> my_name[label="My name"];
+  myprivacy_beingviolated -> my_IP[label="My IP address"];
+  myprivacy_beingviolated -> my_home[label="My private home address"];
+  myprivacy_beingviolated -> my_email[label="My private email address"];
+  myprivacy_beingviolated -> my_phone[label="My private phone #"];
+  myprivacy_beingviolated -> my_pics[label="Private images of me"];
+  myprivacy_beingviolated -> my_etc[label="Something else"];
+
+  my_name [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="Name
+
+    Unfortunately, your name isn't considered private information,
+    and posting it isn't a violation of either the law or of our
+    Community Guidelines. If you're uncomfortable with the post,
+    try to communicate with the person who posted it and make
+    your feelings on it known."
+  ]
+
+  my_IP [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="IP address
+
+    Unfortunately, your IP address isn't considered private
+    information, and posting it isn't a violation of either
+    the law or of our Community Guidelines. If you're
+    uncomfortable with the post, try to communicate with the
+    person who posted it and make your feelings on it known."
+  ]
+
+  my_home [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  my_email [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  my_phone [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  my_pics [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Proof of Identity: ____
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  my_etc [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  someonesprivacy_beingviolated [
+    shape="rectangle",
+    label="What, specifically, was posted?"
+  ]
+
+  someonesprivacy_beingviolated -> their_name[label="My name"];
+  someonesprivacy_beingviolated -> their_IP[label="My IP address"];
+  someonesprivacy_beingviolated -> their_home[label="My private home address"];
+  someonesprivacy_beingviolated -> their_email[label="My private email address"];
+  someonesprivacy_beingviolated -> their_phone[label="My private phone #"];
+  someonesprivacy_beingviolated -> their_etc[label="Something else"];
+
+  their_name [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="Name
+
+    Unfortunately, your name isn't considered private information,
+    and posting it isn't a violation of either the law or of our
+    Community Guidelines. If you're uncomfortable with the post,
+    try to communicate with the person who posted it and make
+    your feelings on it known."
+  ]
+
+  their_IP [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="IP address
+
+    Unfortunately, your IP address isn't considered private
+    information, and posting it isn't a violation of either
+    the law or of our Community Guidelines. If you're
+    uncomfortable with the post, try to communicate with the
+    person who posted it and make your feelings on it known."
+  ]
+
+  their_home [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  their_email [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  their_phone [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  their_etc [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Privacy Violation
+
+    Content you're reporting: ____
+    Source of the private info: ____
+    A little about yourself: ____"
+  ]
+
+  # Harm to Minors Path
+
+  harm_to_minors [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Harm to Minors
+
+    Content you're reporting: ____
+    Some explanation: ____
+    A little about yourself: ____"
+  ]
+
+  # Self Harm Path
+
+  self_harm [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Promotion or glorification of self-harm
+
+    Content you're reporting: ____
+    A little about yourself: ____"
+  ]
+
+  #
+  #
+  # Misuse of Identity or Work
+  #
+  #
+
+  misuse_identity_work -> mis_non_attribution;
+  misuse_identity_work -> copyright_infrigement;
+  misuse_identity_work -> trademark_infringement;
+  misuse_identity_work -> confusion_impersonation;
+
+  {rank=same;mis_non_attribution copyright_infrigement trademark_infringement confusion_impersonation}
+
+  misuse_identity_work [
+    shape="rectangle",
+    label="Misuse of your identity or work"
+  ]
+
+  # Mis-attribution Path
+
+  mis_non_attribution [
+    shape="rectangle",
+    label="Misattribution or non-attribution
+    Is it your work that's being misattributed,
+    or that's missing an attribution?"
+  ]
+
+  mis_non_attribution -> its_mine[label="yes"];
+  mis_non_attribution -> not_mine[label="no"];
+
+  its_mine [
+    shape="rectangle",
+    label="Did you originally post this work on Tumblr, or somewhere else?"
+  ]
+
+  its_mine -> posted_to_tumblr[label="I posted it to Tumblr"];
+  its_mine -> posted_elsewhere[label="I posted it somewhere else"];
+
+  posted_to_tumblr [
+    shape="rectangle",
+    label="Which of the following best describes your issue?"
+  ]
+
+  posted_to_tumblr -> someone_reposted[label="Someone reposted it
+  instead of reblogging it."];
+  posted_to_tumblr -> someone_reblogged[label="Someone reblogged it
+  and injected a link back to their own blog."];
+
+  someone_reposted [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Misattribution or non-attribution
+
+    Original content URL: ____
+    Repost: ____
+    A little about yourself: ____"
+  ]
+
+  someone_reblogged [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Misattribution or non-attribution
+
+    Original content URL: ____
+    Reblog: ____
+    A little about yourself: ____"
+  ]
+
+  posted_elsewhere [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="You'll need to file a request under the
+    Digital Millenium Copyright Act (DMCA).
+    Don't worry, we've got a form for that.
+
+    - File a DMCA request"
+  ]
+
+  not_mine [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="No
+
+    Thanks for letting us know.
+    Unfortunately, in situations like this,
+    we need to hear directly from the user
+    whose work has been misattributed,
+    or is missing attribution.
+    Get in contact with them if you can,
+    and refer them to our abuse form ."
+  ]
+
+  # Copyright Infringement Path
+
+  copyright_infrigement [
+    shape="rectangle",
+    label="Copyright infringement
+    Did you originally post this work on Tumblr, or somewhere else?
+
+    Error Here"
+  ]
+
+  copyright_infrigement -> mis_non_attribution[label="I posted it to Tumblr"];
+  copyright_infrigement -> posted_elsewhere2[label="I posted it somewhere else"];
+
+  posted_elsewhere2 [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="You'll need to file a request under the
+    Digital Millenium Copyright Act (DMCA).
+    Don't worry, we've got a form for that.
+
+    - File a DMCA request"
+  ]
+
+  # Trademark Infringement Path
+
+  trademark_infringement [
+    shape="rectangle",
+    label="Trademark infringement
+    Are you the trademark holder or an authorized representative?"
+  ]
+
+  trademark_infringement -> trademark_holder[label="Yes"];
+  trademark_infringement -> trademark_nonholder[label="No"];
+
+  trademark_holder [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Trademark Infringement
+
+    Your Information: ____
+    Trademark Information: ____
+    Registration Documentation: ____
+    How is this content infringing your trademark(s)?: ____
+    Toggle"
+  ]
+
+  trademark_nonholder [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="No
+
+    Thanks for bringing this to our attention,
+    but we need to hear directly from the trademark
+    holder or their authorized representative.
+    Get in contact with them if you can,
+    and refer them to our abuse form.
+
+    - Got it"
+  ]
+
+  # Confusion or Impersonation Path
+
+  confusion_impersonation [
+    shape="rectangle",
+    label="Confusion or impersonation
+    Whose identity is being impersonated or confused?"
+  ]
+
+  confusion_impersonation -> myown[label="My Own"];
+  confusion_impersonation -> trademark_infringement[label="My company, brand, or org"];
+  confusion_impersonation -> someone_elses[label="Someone else's"];
+
+  myown [
+  shape="note", color=Blue, fontcolor=Blue,
+  label="Confusion or impersonation
+
+  Some information about you: ____
+  Where confusion or impersonation takes place: ____
+  Explain how you're being impersonated: ____"
+  ]
+
+  someone_elses [
+    shape="rectangle", color=Red, fontcolor=Red,
+    label="Someone else's
+
+      We appreciate your bringing this to our attention.
+      In these cases, we need to hear directly from the
+      person being impersonated by this blog.
+      Get in contact with them if you can, and refer
+      them to our abuse form.
+
+    - Got it"
+  ]
+
+  #
+  #
+  # Gross or Hateful
+  #
+  #
+
+  gross_harmful_content -> gore_mutilation_beastiality_necrophilia[label="Gore, mutilation, beastiality, or necrophilia"];
+  gross_harmful_content -> malicious_speech[label="Malicious Speech"];
+
+  gross_harmful_content [
+    shape="rectangle",
+    label="This content is gross or hateful"
+  ]
+
+  gore_mutilation_beastiality_necrophilia [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Gore, mutilation, bestiality, or necrophilia
+
+    Content You're reporting: ____
+    Which of these things does it contain:
+      -  Gore
+      -  Beastiality
+      -  Necrophilia
+    A little about yourself: ____"
+  ]
+
+  malicious_speech [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Malicious speech
+
+    Content You're reporting: ____
+    Describe how it violates TCG: ____
+    A little about yourself: ____"
+  ]
+
+  #
+  #
+  # TCG Violations
+  #
+  #
+
+  other_reason -> some_other_reason;
+
+  other_reason [
+    shape="rectangle",
+    label="Some other reason"
+  ]
+
+  some_other_reason [
+    shape="note", color=Blue, fontcolor=Blue,
+    label="Some other reason
+
+    Content You're reporting: ____
+    Describe how it violates TCG: ____
+    A little about yourself: ____"
+  ]
+}
